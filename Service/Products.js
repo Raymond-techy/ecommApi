@@ -1,4 +1,5 @@
 const { Product } = require("../models/products");
+const { handleMultiple } = require("./imageUpload");
 
 const getProductService = async (productId) => {
   const product = await Product.findById(productId);
@@ -14,13 +15,15 @@ const deleteProductService = async (productId) => {
   const products = await Product.findByIdAndRemove(productId);
   return products;
 };
-const createProductService = async (body) => {
+const createProductService = async (body, files) => {
   const { name, price, quantity, description } = body;
+  const images = await handleMultiple(files);
   const product = new Product({
     name,
     price,
     quantity,
     description,
+    images,
   });
   await product.save();
 

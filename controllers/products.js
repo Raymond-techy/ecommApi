@@ -38,9 +38,10 @@ async function updateProduct(req, res) {
 
 async function createProduct(req, res) {
   const body = req.body;
+  const files = req.files;
   const { error } = validateProduct(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  const product = await createProductService(body);
+  const product = await createProductService(body, files);
   res.status(200).send(product);
 }
 

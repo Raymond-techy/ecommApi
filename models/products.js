@@ -20,6 +20,14 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 1,
   },
+  images: {
+    type: [String],
+    default: [],
+  },
+  vendor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Product = mongoose.model("product", productSchema);
