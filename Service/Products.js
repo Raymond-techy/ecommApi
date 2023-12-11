@@ -38,7 +38,6 @@ const updateProductService = async (productID, body) => {
   product.price = price;
   product.quantity = quantity;
   product.description = description;
-
   return await product.save();
 };
 
